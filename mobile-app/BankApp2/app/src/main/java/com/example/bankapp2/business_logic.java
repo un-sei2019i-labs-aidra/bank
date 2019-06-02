@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bankapp2.dataAccess.database.Database;
+
 public class business_logic extends AppCompatActivity {
 
 
@@ -31,7 +33,7 @@ public class business_logic extends AppCompatActivity {
         v_password= (EditText)findViewById(R.id.txt_password);
 
         //Conexión Base de datos
-        data_access aplicacion = new data_access(this,"aplicacion", null, 2);
+        Database aplicacion = new Database(this,"aplicacion", null, 2);
         db = aplicacion.getWritableDatabase();
 
         v_aceptar.setOnClickListener(new View.OnClickListener() {
