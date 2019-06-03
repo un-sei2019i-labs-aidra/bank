@@ -9,7 +9,10 @@ public class Transaction {
     private int id_cuenta_origen;
     private double valor;
     private Date fecha_transaccion;
+    private String estado;
+    public Transaction() {
 
+    }
     public Transaction(int id_cuenta_destino, int id_cuenta_origen, double valor, Date fecha_transaccion, String estado) {
         this.id_cuenta_destino = id_cuenta_destino;
         this.id_cuenta_origen = id_cuenta_origen;
@@ -69,6 +72,7 @@ public class Transaction {
 
     public void setFecha_transaccion(Date fecha_transaccion) {
         this.fecha_transaccion = fecha_transaccion;
+
     }
 
     public String getEstado() {
@@ -78,6 +82,4 @@ public class Transaction {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    private String estado;
 }

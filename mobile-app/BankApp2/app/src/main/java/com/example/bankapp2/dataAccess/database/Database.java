@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.bankapp2.dataAccess.models.User;
-
+import java.util.Date;
 public class Database {
 
         //General
@@ -28,7 +28,7 @@ public class Database {
 
         //Tabla Cuentas
 
-        public static final String TABLA_CUENTAS = "user";
+        public static final String TABLA_CUENTAS = "account";
 
         public static final Integer id_cuenta = Integer.valueOf("id_sistema");
         public static final Double saldo = Double.valueOf("saldo");
@@ -39,7 +39,24 @@ public class Database {
                         id_sistema + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         saldo + " TEXT NOT NULL," +
                         contraseña + " TEXT NOT NULL);";
-    }
+
+        //Tabla Transaction
+        public static  final String TABLA_TRANS = "transactions";
+        public static  final Integer cuenta_destino = Integer.valueOf("cuenta_destino");
+        public static final  Integer cuenta_origen = Integer.valueOf("cuenta_origen");
+        public static final  Date fecha = new Date();
+        public static final  Integer monto = Integer.valueOf("monto");
+        public static final  String status = "status";
+
+        public static final String TABLA_TRANS_SQL =
+                "CREATE TABLE  " + TABLA_TRANS + "(" +
+                        id_sistema + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        cuenta_origen + " INTEGER NOT NULL," +
+                        cuenta_destino + " INTEGER NOT NULL," +
+                        fecha + " DATE," +
+                        monto + " DOUBLE NOT NULL,"+
+                        status + " TEXT NOT NULL);";
+}
 
 
 
