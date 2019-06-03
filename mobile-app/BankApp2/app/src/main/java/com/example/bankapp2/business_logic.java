@@ -9,7 +9,7 @@ import com.example.bankapp2.dataAccess.repositories.UserRepository;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class business_logic extends AppCompatActivity {
 
     private UserRepository db;
 

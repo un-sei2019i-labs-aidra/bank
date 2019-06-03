@@ -5,18 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.bankapp2.business_logic;
 import com.example.bankapp2.dataAccess.database.Database;
-import com.example.bankapp2.dataAccess.models.User;
+import com.example.bankapp2.dataAccess.models.Account;
+
 import java.util.ArrayList;
 
 
-public class UserRepository {
+public class AccountRepository {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
 
-    public UserRepository(business_logic businesslogic) {
+    public AccountRepository(business_logic businesslogic) {
     }
 
     private void openReadableDB() {
@@ -46,7 +46,7 @@ public class UserRepository {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(Database.TABLA_USUARIOS_SQL);
+            db.execSQL(Database.TABLA_CUENTAS_SQL);
         }
 
         @Override
@@ -56,60 +56,63 @@ public class UserRepository {
     }
 
     // Devuelve un objeto de tipo ContentValues que almacenará los valores de los atributos de un objeto Usuario
-    private ContentValues clienteMapperContentValues(User user) {
+    private ContentValues clienteMapperContentValues(Account account) {
         ContentValues us = new ContentValues();
-        us.put(String.valueOf(Database.id_sistema), user.getId_sistema());
-        us.put(Database.nombre, user.getNombre());
-        us.put(Database.contraseña, user.getContraseña());
+        us.put(String.valueOf(Database.id_sistema), account.getId_cuenta());
+        us.put(String.valueOf(Database.saldo), account.getSaldo());
+        us.put(Database.contraseña_c, account.getContraseña());
         return us;
     }
 
 
     //métodos para realizar las operaciones CRUD
 
-    // INSERTAR USUARIO EN LA DB
-    public long createUser(User user) {
+    // CREAR CUENTA EN DB
+    public long createAccount(Account account) {
         this.openWriteableDB();
-        long rowID = db.insert(Database.TABLA_USUARIOS, null, clienteMapperContentValues(user));
+        long rowID = db.insert(Database.TABLA_CUENTAS, null,
+                clienteMapperContentValues(account));
         this.closeDB();
         return rowID;
     }
 
-    // ACTUALIZAR USUARIO DE LA DB
+    // ACTUALIZAR CUENTA DE LA DB
 
-    public void updateUser(User user) {
+    public void updateAccount(Account account) {
         this.openWriteableDB();
         String where = Database.id_sistema + "= ?";
-        db.update(Database.TABLA_USUARIOS, clienteMapperContentValues(user),
-                where, new String[]{String.valueOf(user.getId_sistema())});
+        db.update(Database.TABLA_CUENTAS, clienteMapperContentValues(account), where,
+                new String[]{String.valueOf(account.getId_cuenta())});
         db.close();
     }
 
-    // BORRAR USUARIO DE LA DB
-    public void deleteUser(int id_sistema) {
+    // BORRAR CUENTA DE LA DB
+    public void deleteAccount(int id_sistema) {
         this.openWriteableDB();
-        String where = Database.id_sistema + "= ?";
-        db.delete(Database.TABLA_USUARIOS, where, new String[]{String.valueOf(id_sistema)});
+        String where = Database.id_cuenta + "= ?";
+        db.delete(Database.TABLA_CUENTAS, where,
+                new String[]{String.valueOf(id_sistema)});
         this.closeDB();
     }
 
-    // Cargar usuarios de la DB
-    public ArrayList loadUser() {
+    // LEER CUENTA EN LA DB
+    public ArrayList loadAccount() {
 
         ArrayList list = new ArrayList<>();
 
         this.openReadableDB();
-        String[] campos = new String[]{String.valueOf(Database.id_sistema), Database.nombre, Database.contraseña};
-        Cursor c = db.query(Database.TABLA_USUARIOS, campos, null, null,
-                null, null, null);
+        String[] campos2 = new String[]{String.valueOf(Database.id_cuenta),
+                String.valueOf(Database.saldo), Database.contraseña_c};
+        Cursor c = db.query(Database.TABLA_CUENTAS, campos2, null,
+                null, null, null, null);
 
         try {
             while (c.moveToNext()) {
-                User user = new User();
-                user.setId_sistema(c.getInt(0));
-                user.setNombre(c.getString(1));
-                user.setContraseña(c.getString(2));
-                list.add(user);
+                Account account = new Account();
+                account.setId_cuenta(c.getInt(0));
+                account.setSaldo(c.getDouble(1));
+                account.setContraseña(c.getString(2));
+                list.add(account);
             }
         } finally {
             c.close();
@@ -119,31 +122,24 @@ public class UserRepository {
         return list;
     }
 
+    // BUSCAR CUENTA EN LA DB
 
-    // BUSCAR USER EN LA DB
-
-    public User getUserById(Integer id_sistema) {
-        User user= new User();
+    public Account getAccountById(int id_cuenta) {
+        Account account = new Account();
         this.openReadableDB();
-        String where = Database.TABLA_USUARIOS + "= ?";
-        String[] whereArgs = {String.valueOf(id_sistema)};
-        Cursor c = db.query(Database.TABLA_USUARIOS, null, where,
-                whereArgs, null, null, null);
+        String where = Database.TABLA_CUENTAS + "= ?";
+        String[] whereArgs = {String.valueOf(id_cuenta)};
+        Cursor c = db.query(Database.TABLA_CUENTAS, null,
+                where, whereArgs, null, null, null);
 
         if( c != null || c.getCount() <=0) {
             c.moveToFirst();
-            user.setId_sistema(c.getInt(0));
-            user.setNombre(c.getString(1));
-            user.setContraseña(c.getString(2));
+            account.setId_cuenta(c.getInt(0));
+            account.setSaldo(c.getDouble(1));
+            account.setContraseña(c.getString(2));
             c.close();
         }
         this.closeDB();
-        return user;
+        return account;
     }
-
-
-
-
-
-
 }
