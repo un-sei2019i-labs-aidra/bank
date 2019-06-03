@@ -1,10 +1,10 @@
-package com.example.bankapp2;
+package com.example.bankapp2.dataAccess.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class data_access extends SQLiteOpenHelper {
+public class Database extends SQLiteOpenHelper {
 
     public String[] estructura(){
         String[] datos = new String[2];
@@ -12,8 +12,7 @@ public class data_access extends SQLiteOpenHelper {
         datos[1]= "INSERT INTO Usuarios (nombre,usuario,password) VALUES('admin',1234,123456)";
         return datos;
     }
-
-    public data_access(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
