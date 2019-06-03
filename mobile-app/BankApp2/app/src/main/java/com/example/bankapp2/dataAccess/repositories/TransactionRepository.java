@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.bankapp2.bussiness_logic;
+import com.example.bankapp2.businessLogic.business_logic;
 import com.example.bankapp2.dataAccess.database.Database;
 import com.example.bankapp2.dataAccess.models.Transaction;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class TransactionRepository {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
 
-    public TransactionRepository(MainActivity mainActivity) {
+    public TransactionRepository(business_logic business_logic) {
     }
 
     private void openReadableDB() {
@@ -60,8 +60,8 @@ public class TransactionRepository {
     private ContentValues clienteMapperContentValues(Transaction transaction) {
         ContentValues us = new ContentValues();
         us.put(String.valueOf(Database.id_sistema), transaction.getId_transaccion());
-        us.put(Database.cuenta_destino, transaction.getId_cuenta_destino());
-        us.put(Database.cuenta_origen, transaction.getId_cuenta_origen());
+        us.put(String.valueOf(Database.cuenta_destino), transaction.getId_cuenta_destino());
+        us.put(String.valueOf(Database.cuenta_origen), transaction.getId_cuenta_origen());
         return us;
     }
 
@@ -111,7 +111,7 @@ public class TransactionRepository {
                 transaction.setId_transaccion(c.getInt(0));
                 transaction.setId_cuenta_origen(c.getInt(1));
                 transaction.setId_cuenta_destino(c.getInt(2));
-                transaction.setFecha_transaccion(Date.parse(c.getString(3)));
+                //transaction.setFecha_transaccion(Date(c.get(3)));
                 transaction.setValor(c.getDouble(4));
                 transaction.setEstado(c.getString(5));
                 list.add(transaction);
@@ -140,7 +140,7 @@ public class TransactionRepository {
             transaction.setId_transaccion(c.getInt(0));
             transaction.setId_cuenta_origen(c.getInt(1));
             transaction.setId_cuenta_destino(c.getInt(2));
-            transaction.setFecha_transaccion(c.getString(3));
+            //transaction.setFecha_transaccion(c.getString(3));
             transaction.setValor(c.getDouble(4));
             transaction.setEstado(c.getString(5));
             c.close();
