@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.bankapp2.MainActivity;
+import com.example.bankapp2.bussiness_logic;
 import com.example.bankapp2.dataAccess.database.Database;
 import com.example.bankapp2.dataAccess.models.Transaction;
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class TransactionRepository {
     //métodos para realizar las operaciones CRUD
 
     // INSERTAR TRANSACCION EN LA DB
-    public long createUser(Transaction transaction) {
+    public long createTransaction(Transaction transaction) {
         this.openWriteableDB();
         long rowID = db.insert(Database.TABLA_USUARIOS, null, clienteMapperContentValues(transaction));
         this.closeDB();
@@ -78,7 +78,7 @@ public class TransactionRepository {
 
     // ACTUALIZAR TRANSACCION DE LA DB
 
-    public void updateUser(Transaction transaction) {
+    public void updateTransaction(Transaction transaction) {
         this.openWriteableDB();
         String where = Database.id_sistema + "= ?";
         db.update(Database.TABLA_TRANS, clienteMapperContentValues(transaction),
@@ -87,7 +87,7 @@ public class TransactionRepository {
     }
 
     // BORRAR TRANSACCION DE LA DB
-    public void deleteUser(int id_trans) {
+    public void deleteTransaction(int id_trans) {
         this.openWriteableDB();
         String where = Database.id_sistema + "= ?";
         db.delete(Database.TABLA_TRANS, where, new String[]{String.valueOf(id_trans)});
