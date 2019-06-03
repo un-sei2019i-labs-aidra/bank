@@ -1,7 +1,97 @@
 package com.example.bankapp2;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 
-import android.content.Intent;
+import com.example.bankapp2.dataAccess.models.User;
+import com.example.bankapp2.dataAccess.repositories.UserRepository;
+
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private UserRepository db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.presentation);
+
+        db = new UserRepository(this);
+
+        User usuario1 = new User(1091666701,"Liseth Arévalo","123456");
+        User usuario2 = new User(1233692748,"Diana Guarín","123456");
+        User usuario3 = new User(1030661820,"Valeria Huepa","123456");
+
+
+        Log.i("---> Base de datos: ", "Insertando Clientes....");
+        db.insertUser(usuario1);
+        db.insertUser(usuario2);
+        db.insertUser(usuario3);
+
+        Log.i("---> Base de datos: ", "Mostrando Clientes....");
+        mostrarUserLog();
+
+        Log.i("---> Base de datos: ", "Borrando Cliente con id 1....");
+        db.deleteUser(1);
+        mostrarUserLog();
+
+        Log.i("---> Base de datos: ", "Cambiando el nombre de cliente2....");
+        usuario2.setNombre("María");
+        db.updateUser(usuario2);
+        mostrarUserLog();
+
+        Log.i("---> Base de datos: ", "Buscando datos de cliente....");
+        User user = new User();
+        user = db.buscarUser("Juan");
+        Log.i("---> Base de datos: ", "Los datos de pedro son: "+user.toString());
+
+        Log.i("---> Base de datos: ", "Cambiando el nombre de Juan....");
+        usuario2.setNombre("María");
+        db.updateUser(user);
+        mostrarUserLog();
+    }
+
+    private void mostrarUserLog() {
+        List list = db.loadUser();
+
+        for(Object user : list) {
+            Log.i("---> Base de datos: ", user.toString());
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -60,4 +150,4 @@ public class business_logic extends AppCompatActivity {
 
 
     }
-}
+}*/
