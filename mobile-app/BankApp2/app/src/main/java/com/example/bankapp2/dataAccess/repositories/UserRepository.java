@@ -68,7 +68,7 @@ public class UserRepository {
     //métodos para realizar las operaciones CRUD
 
     // INSERTAR USUARIO EN LA DB
-    public long insertUser(User user) {
+    public long createUser(User user) {
         this.openWriteableDB();
         long rowID = db.insert(Database.TABLA_USUARIOS, null, clienteMapperContentValues(user));
         this.closeDB();
@@ -80,7 +80,8 @@ public class UserRepository {
     public void updateUser(User user) {
         this.openWriteableDB();
         String where = Database.id_sistema + "= ?";
-        db.update(Database.TABLA_USUARIOS, clienteMapperContentValues(user), where, new String[]{String.valueOf(user.getId_sistema())});
+        db.update(Database.TABLA_USUARIOS, clienteMapperContentValues(user),
+                where, new String[]{String.valueOf(user.getId_sistema())});
         db.close();
     }
 
@@ -92,14 +93,15 @@ public class UserRepository {
         this.closeDB();
     }
 
-    // LEER UN USUARIO EN LA DB
+    // Cargar usuarios de la DB
     public ArrayList loadUser() {
 
         ArrayList list = new ArrayList<>();
 
         this.openReadableDB();
         String[] campos = new String[]{String.valueOf(Database.id_sistema), Database.nombre, Database.contraseña};
-        Cursor c = db.query(Database.TABLA_USUARIOS, campos, null, null, null, null, null);
+        Cursor c = db.query(Database.TABLA_USUARIOS, campos, null, null,
+                null, null, null);
 
         try {
             while (c.moveToNext()) {
@@ -117,14 +119,16 @@ public class UserRepository {
         return list;
     }
 
+
     // BUSCAR USER EN LA DB
 
-    public User buscarUser(String nombre) {
+    public User getUserById(Integer id_sistema) {
         User user= new User();
         this.openReadableDB();
         String where = Database.TABLA_USUARIOS + "= ?";
-        String[] whereArgs = {nombre};
-        Cursor c = db.query(Database.TABLA_USUARIOS, null, where, whereArgs, null, null, null);
+        String[] whereArgs = {String.valueOf(id_sistema)};
+        Cursor c = db.query(Database.TABLA_USUARIOS, null, where,
+                whereArgs, null, null, null);
 
         if( c != null || c.getCount() <=0) {
             c.moveToFirst();
