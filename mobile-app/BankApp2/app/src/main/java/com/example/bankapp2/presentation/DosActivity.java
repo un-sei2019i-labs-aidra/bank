@@ -1,10 +1,12 @@
-package com.example.bankapp2;
+package com.example.bankapp2.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.bankapp2.R;
 
 public class DosActivity extends AppCompatActivity {
 

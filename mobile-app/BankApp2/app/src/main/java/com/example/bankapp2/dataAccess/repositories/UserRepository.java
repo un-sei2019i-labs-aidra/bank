@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.bankapp2.business_logic;
+import com.example.bankapp2.businessLogic.business_logic;
 import com.example.bankapp2.dataAccess.database.Database;
 import com.example.bankapp2.dataAccess.models.User;
 import java.util.ArrayList;

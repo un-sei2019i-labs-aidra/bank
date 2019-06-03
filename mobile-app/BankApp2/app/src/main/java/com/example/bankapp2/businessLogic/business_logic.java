@@ -1,9 +1,10 @@
-package com.example.bankapp2;
+package com.example.bankapp2.businessLogic;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.bankapp2.R;
 import com.example.bankapp2.dataAccess.models.User;
 import com.example.bankapp2.dataAccess.repositories.UserRepository;
 
