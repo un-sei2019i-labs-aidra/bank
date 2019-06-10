@@ -4,13 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.bankapp2.dataAccess.models.User;
 import java.util.Date;
-public class Database {
+public class Database extends SQLiteOpenHelper {
 
         //General
-        public static final String DB_NAME = "Database";
-        public static final int DB_VERSION = 1;
+        public static final String DATABASE_NAME = "Database";
+        public static final int DATABASE_VERSION = 1;
 
 
         //Tabla Usuario
@@ -31,12 +30,14 @@ public class Database {
         public static final String TABLA_CUENTAS = "account";
 
         public static final Integer id_cuenta = Integer.valueOf("id_sistema");
+        public static final Integer id_usuario = Integer.valueOf("id_usuario");
         public static final Double saldo = Double.valueOf("saldo");
         public static final String contraseña_c = "contraseña";
 
         public static final String TABLA_CUENTAS_SQL =
                 "CREATE TABLE  " + TABLA_CUENTAS + "(" +
                         id_sistema + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        id_usuario + " TEXT NOT NULL," +
                         saldo + " TEXT NOT NULL," +
                         contraseña + " TEXT NOT NULL);";
 
@@ -56,6 +57,28 @@ public class Database {
                         fecha + " DATE," +
                         monto + " DOUBLE NOT NULL,"+
                         status + " TEXT NOT NULL);";
+
+        public void onCreate(SQLiteDatabase db) {
+                db.execSQL(TABLA_USUARIOS);
+
+                db.execSQL("INSERT into TABLA_USUARIOS(id_sistema,nombre,contraseña)VALUES(1091666701,'Liseth Arévalo','123456')");
+                db.execSQL("INSERT into TABLA_USUARIOS(id_sistema,nombre,contraseña)VALUES(1075681008,'Érika Cárdenas','654321')");
+
+                db.execSQL(TABLA_CUENTAS);
+
+                db.execSQL("INSERT INTO TABLA_CUENTAS(id_sistema,id_usuario,saldo,contraseña)VALUES(123,1091666701,500000,'123456')");
+                db.execSQL("INSERT INTO TABLA_CUENTAS(id_sistema,id_usuario,saldo,contraseña)VALUES(122,1075681008,30000,'123456')");
+
+        }
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+
+        }
+
+        public Database(Context context) {
+                super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        }
+
+
 }
 
 

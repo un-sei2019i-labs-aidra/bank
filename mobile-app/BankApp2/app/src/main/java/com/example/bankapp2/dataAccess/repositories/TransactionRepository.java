@@ -11,14 +11,13 @@ import com.example.bankapp2.dataAccess.database.Database;
 import com.example.bankapp2.dataAccess.models.Transaction;
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class TransactionRepository {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
-
-    public TransactionRepository(business_logic business_logic) {
-    }
 
     private void openReadableDB() {
         db = dbHelper.getReadableDatabase();
@@ -111,7 +110,7 @@ public class TransactionRepository {
                 transaction.setId_transaccion(c.getInt(0));
                 transaction.setId_cuenta_origen(c.getInt(1));
                 transaction.setId_cuenta_destino(c.getInt(2));
-                //transaction.setFecha_transaccion(Date(c.get(3)));
+                //transaction.setFecha_transaccion(Date((c.getString)(3)));
                 transaction.setValor(c.getDouble(4));
                 transaction.setEstado(c.getString(5));
                 list.add(transaction);
