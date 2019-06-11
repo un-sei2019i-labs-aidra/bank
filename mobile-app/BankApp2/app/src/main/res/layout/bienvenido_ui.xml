@@ -55,15 +55,24 @@
             android:textSize="24sp" />
 
         <Button
+<<<<<<< HEAD
             android:name="MyController"
             android:id="@+id/btn_enviar"
+=======
+            android:id="@+id/btn_enviar"
+            android:name="MyController"
+>>>>>>> 9b6df82557a9d459f945b232f24062b16ca96b12
             android:layout_width="183dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="30dp"
             android:layout_marginLeft="5dp"
             android:background="#E9DEE1E9"
+<<<<<<< HEAD
             android:text="ENVIAR"
+=======
+            android:text="Send"
+>>>>>>> 9b6df82557a9d459f945b232f24062b16ca96b12
             android:textColor="#0A080E"
             android:textSize="30sp" />
 
