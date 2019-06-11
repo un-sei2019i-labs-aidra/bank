@@ -74,7 +74,7 @@ public class Database extends SQLiteOpenHelper {
 
         }
 
-        public Database(Context context) {
+        public Database(Context context, String aplicacion, Object o, int i) {
                 super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 

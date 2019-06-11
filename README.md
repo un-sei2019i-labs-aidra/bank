@@ -1,1 +1,4 @@
-# bank2
+# Bank App
+## by Lizeth Arevalo
+## Valeria Huepa
+## Diana Guarin
