@@ -1,53 +1,9 @@
- package com.example.bankapp2.businessLogic;
+package com.example.bankapp2.businessLogic;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-<<<<<<< HEAD
-import com.example.bankapp2.R;
-import com.example.bankapp2.dataAccess.models.Account;
-import com.example.bankapp2.dataAccess.models.User;
-import com.example.bankapp2.dataAccess.repositories.AccountRepository;
-import com.example.bankapp2.dataAccess.repositories.UserRepository;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import com.example.bankapp2.dataAccess.database.Database;
-import com.example.bankapp2.presentation.DosActivity;
-
-
-public class business_logic extends AppCompatActivity {
-
-    // Se definen las vistas con sus tipos de variables
-    private Button v_aceptar;
-    private EditText v_usuario;
-    private EditText v_password;
-
-
-
-    private SQLiteDatabase db;
-    private UserRepository db2;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.presentation);
-        //Vistas, hacen referencia a los elementos creados en la UI
-
-        v_aceptar = (Button)findViewById(R.id.btn_entrar);
-        v_usuario= (EditText)findViewById(R.id.txt_user);
-        v_password= (EditText)findViewById(R.id.txt_password);
-
-        //Conexión Base de datos
-        //Database dbHelper = new Database(this);
-        //SQLiteDatabase db = dbHelper.getWritableDatabase();
-=======
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -65,33 +21,8 @@ public class business_logic extends AppCompatActivity {
     private Button v_aceptar;
     private EditText v_usuario;
     private EditText v_password;
-
-    private EditText v_cuenta;
-    private EditText v_monto;
-    private Button v_enviar;
-    private int idcuenta;
-
->>>>>>> lyarevalo
-
     private SQLiteDatabase db;
 
-<<<<<<< HEAD
-        v_aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String query= "select id_sistema,contraseña from user where id_sistema = "+v_usuario.getText().toString()+" and contraseña = "+v_password.getText().toString()+"";
-
-                Intent i = new Intent(business_logic.this, DosActivity.class);
-                    startActivity(i);
-
-
-            }
-        });
-
-
-        ;
-=======
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,15 +32,6 @@ public class business_logic extends AppCompatActivity {
         v_aceptar = (Button)findViewById(R.id.btn_entrar);
         v_usuario= (EditText)findViewById(R.id.txt_user);
         v_password= (EditText)findViewById(R.id.txt_password);
-
-        setContentView(R.layout.bienvenido_ui);
-        v_cuenta = (EditText) findViewById(R.id.txt_account);
-        v_monto = (EditText) findViewById(R.id.txt_amount);
-        v_enviar = (Button) findViewById(R.id.btn_enviar);
-
-        idcuenta = 0;
-        Intent intent = getIntent();
-        idcuenta = intent.getIntExtra("id_cuenta", 0);
 
         //Conexión Base de datos
         //Database aplicacion = new Database(this,"aplicacion", null, 1);
@@ -127,7 +49,6 @@ public class business_logic extends AppCompatActivity {
                 //startActivity(DosActivity);
             }
         });
->>>>>>> lyarevalo
 
     }
 }
@@ -137,15 +58,12 @@ public class business_logic extends AppCompatActivity {
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
 
->>>>>>> lyarevalo
 /*
 import android.content.Intent;
 import android.database.Cursor;

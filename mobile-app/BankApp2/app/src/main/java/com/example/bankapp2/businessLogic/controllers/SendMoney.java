@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-package com.example.bankapp2.businessLogic;
-
-public class SendMoney {
-}
-=======
 package com.example.bankapp2.businessLogic.controllers;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +18,6 @@ public class SendMoney extends business_logic {
     private EditText v_monto;
     private Button v_enviar;
     private int idcuenta;
-
 
     private SQLiteDatabase db;
 
@@ -88,4 +81,3 @@ public class SendMoney extends business_logic {
 
 
 
->>>>>>> lyarevalo

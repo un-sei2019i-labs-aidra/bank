@@ -55,15 +55,15 @@
             android:textSize="24sp" />
 
         <Button
-            android:name="MyController"
             android:id="@+id/btn_enviar"
+            android:name="MyController"
             android:layout_width="183dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="30dp"
             android:layout_marginLeft="5dp"
             android:background="#E9DEE1E9"
-            android:text="ENVIAR"
+            android:text="Send"
             android:textColor="#0A080E"
             android:textSize="30sp" />
 
