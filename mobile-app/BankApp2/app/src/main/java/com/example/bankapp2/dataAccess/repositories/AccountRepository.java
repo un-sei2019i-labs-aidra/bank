@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.bankapp2.businessLogic.business_logic;
 import com.example.bankapp2.dataAccess.database.Database;
 import com.example.bankapp2.dataAccess.models.Account;
 
@@ -15,9 +14,6 @@ import java.util.ArrayList;
 public class AccountRepository {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
-
-    public AccountRepository(business_logic businesslogic) {
-    }
 
     private void openReadableDB() {
         db = dbHelper.getReadableDatabase();
@@ -55,7 +51,7 @@ public class AccountRepository {
         }
     }
 
-    // Devuelve un objeto de tipo ContentValues que almacenará los valores de los atributos de un objeto Usuario
+    // Devuelve un objeto de tipo ContentValues que almacenará los valores de los atributos de un objeto Cuenta
     private ContentValues clienteMapperContentValues(Account account) {
         ContentValues us = new ContentValues();
         us.put(String.valueOf(Database.id_sistema), account.getId_cuenta());
